@@ -1,11 +1,11 @@
 <?php
-namespace PayU\Request;
+namespace IdeasoftLabs\PayU\Request;
 
-use PayU\Parameter\ParameterInterface;
+use IdeasoftLabs\PayU\Parameter\ParameterInterface;
 
 /**
  * Class AbstractRequest
- * @package PayU\Request
+ * @package IdeasoftLabs\PayU\Request
  */
 abstract class AbstractRequest
 {

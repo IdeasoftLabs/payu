@@ -1,9 +1,9 @@
 <?php
-namespace PayU\Parameter;
+namespace IdeasoftLabs\PayU\Parameter;
 
 /**
  * Interface ParameterInterface
- * @package PayU\Parameter
+ * @package IdeasoftLabs\PayU\Parameter
  */
 interface ParameterInterface
 {

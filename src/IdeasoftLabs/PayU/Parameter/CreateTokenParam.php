@@ -1,14 +1,14 @@
 <?php
-namespace PayU\Parameter;
+namespace IdeasoftLabs\PayU\Parameter;
 
-use PayU\Parameter\Model\BillingAddress;
-use PayU\Parameter\Model\CreditCard;
-use PayU\Parameter\Model\DeliveryAddress;
-use PayU\Parameter\Model\OrderItem;
+use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
+use IdeasoftLabs\PayU\Parameter\Model\CreditCard;
+use IdeasoftLabs\PayU\Parameter\Model\DeliveryAddress;
+use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
 
 /**
  * Class CreateToken
- * @package PayU\Parameter
+ * @package IdeasoftLabs\PayU\Parameter
  */
 class CreateTokenParam extends AbstractParameter
 {

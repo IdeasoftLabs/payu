@@ -1,9 +1,9 @@
 <?php
-namespace PayU\Response;
+namespace IdeasoftLabs\PayU\Response;
 
 /**
  * Class CreateTokenResponse
- * @package PayU\Response
+ * @package IdeasoftLabs\PayU\Response
  */
 class CreateTokenResponse extends AbstractResponse
 {

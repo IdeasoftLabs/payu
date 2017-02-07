@@ -1,9 +1,9 @@
 <?php
-namespace PayU\Parameter\Model;
+namespace IdeasoftLabs\PayU\Parameter\Model;
 
 /**
  * Class AbstractAddress
- * @package PayU\Parameter\Model
+ * @package IdeasoftLabs\PayU\Parameter\Model
  */
 abstract class AbstractAddress
 {

@@ -1,9 +1,9 @@
 <?php
-namespace PayU\Parameter\Model;
+namespace IdeasoftLabs\PayU\Parameter\Model;
 
 /**
  * Class OrderItem
- * @package PayU\Parameter\Model
+ * @package IdeasoftLabs\PayU\Parameter\Model
  */
 class OrderItem
 {

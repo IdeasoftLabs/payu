@@ -1,9 +1,9 @@
 <?php
-namespace PayU\Response;
+namespace IdeasoftLabs\PayU\Response;
 
 /**
  * Class AbstractResponse
- * @package PayU\Response
+ * @package IdeasoftLabs\PayU\Response
  */
 abstract class AbstractResponse
 {

@@ -1,14 +1,14 @@
 <?php
-namespace PayU\Request;
+namespace IdeasoftLabs\PayU\Request;
 
 use GuzzleHttp\Client;
-use PayU\Parameter\CreateTokenParam;
-use PayU\Parameter\Model\OrderItem;
-use PayU\Response\CreateTokenResponse;
+use IdeasoftLabs\PayU\Parameter\CreateTokenParam;
+use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
+use IdeasoftLabs\PayU\Response\CreateTokenResponse;
 
 /**
  * Class CreateTokenRequest
- * @package PayU\Request
+ * @package IdeasoftLabs\PayU\Request
  */
 class CreateTokenRequest extends AbstractRequest
 {

@@ -1,9 +1,9 @@
 <?php
-namespace PayU\Parameter;
+namespace IdeasoftLabs\PayU\Parameter;
 
 /**
  * Class AbstractParameter
- * @package PayU\Parameter
+ * @package IdeasoftLabs\PayU\Parameter
  */
 abstract class AbstractParameter implements ParameterInterface
 {
