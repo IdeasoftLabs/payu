@@ -17,12 +17,12 @@
     }
   ],
   "autoload": {
-    "psr-4": {
+    "psr-0": {
       "IdeasoftLabs\\PayU\\": "src/"
     }
   },
   "autoload-dev": {
-    "psr-4": {
+    "psr-0": {
       "IdeasoftLabs\\PayU\\Tests\\": "tests/"
     }
   }
