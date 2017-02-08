@@ -1,5 +1,5 @@
 <?php
-namespace IdeasoftLabs\PayU\Test\IdeasoftLabs\PayU\Request;
+namespace IdeasoftLabs\PayU\Test;
 
 use IdeasoftLabs\PayU\Parameter\Model\CreditCard;
 use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
@@ -10,7 +10,7 @@ use IdeasoftLabs\PayU\Request\CreateTokenRequest;
 
 /**
  * Class CreateTokenRequestTest
- * @package IdeasoftLabs\PayU\Test\IdeasoftLabs\PayU\Request
+ * @package IdeasoftLabs\PayU\Test\IdeasoftLabs\PayU
  */
 class CreateTokenRequestTest extends \PHPUnit_Framework_TestCase
 {

@@ -72,11 +72,12 @@ class PayWithTokenRequest extends AbstractRequest
 
     /**
      * Send request
+     * @param null $client
      * @return PayWithTokenResponse
      */
-    public function send()
+    public function send($client = null)
     {
-        $response = parent::send();
+        $response = parent::send($client);
         return new PayWithTokenResponse(@simplexml_load_string($response->getBody()->getContents()));
     }
 }
