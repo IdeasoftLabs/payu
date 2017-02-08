@@ -10,9 +10,19 @@ composer require ideasoft/payu
 Example file : create_token.php
 ```php
 <?php
-
 // request
 $request = new CreateTokenRequest($param);
 /** @var \IdeaSoft\PayU\Response\CreateTokenResponse $response */
 $response = $request->send();
 $token = $response->getTokenHash();
+```
+## How to pay with token
+Example file : pay_with_token.php
+```php
+<?php
+// request
+$request = new PayWithTokenRequest($param);
+/** @var \IdeaSoft\PayU\Response\PayWithTokenResponse $response */
+$response = $request->send();
+$refNo = $response->getRefNo();
+```
