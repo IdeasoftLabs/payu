@@ -1,12 +1,12 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use IdeasoftLabs\PayU\Parameter\Model\CreditCard;
-use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
-use IdeasoftLabs\PayU\Parameter\Model\DeliveryAddress;
-use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
-use IdeasoftLabs\PayU\Parameter\CreateTokenParam;
-use IdeasoftLabs\PayU\Request\CreateTokenRequest;
+use IdeaSoft\PayU\Parameter\Model\CreditCard;
+use IdeaSoft\PayU\Parameter\Model\BillingAddress;
+use IdeaSoft\PayU\Parameter\Model\DeliveryAddress;
+use IdeaSoft\PayU\Parameter\Model\OrderItem;
+use IdeaSoft\PayU\Parameter\CreateTokenParam;
+use IdeaSoft\PayU\Request\CreateTokenRequest;
 
 $creditCard = new CreditCard();
 $creditCard->setHolderName('Murat SAÇ');
@@ -65,6 +65,6 @@ $param->addOrderItem($orderItem);
 
 // request
 $request = new CreateTokenRequest($param);
-/** @var \IdeasoftLabs\PayU\Response\CreateTokenResponse $response */
+/** @var \IdeaSoft\PayU\Response\CreateTokenResponse $response */
 $response = $request->send();
 echo "TOKEN : ".$response->getTokenHash();

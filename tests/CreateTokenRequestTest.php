@@ -1,16 +1,16 @@
 <?php
-namespace IdeasoftLabs\PayU\Test;
+namespace IdeaSoft\PayU\Test;
 
-use IdeasoftLabs\PayU\Parameter\Model\CreditCard;
-use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
-use IdeasoftLabs\PayU\Parameter\Model\DeliveryAddress;
-use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
-use IdeasoftLabs\PayU\Parameter\CreateTokenParam;
-use IdeasoftLabs\PayU\Request\CreateTokenRequest;
+use IdeaSoft\PayU\Parameter\Model\CreditCard;
+use IdeaSoft\PayU\Parameter\Model\BillingAddress;
+use IdeaSoft\PayU\Parameter\Model\DeliveryAddress;
+use IdeaSoft\PayU\Parameter\Model\OrderItem;
+use IdeaSoft\PayU\Parameter\CreateTokenParam;
+use IdeaSoft\PayU\Request\CreateTokenRequest;
 
 /**
  * Class CreateTokenRequestTest
- * @package IdeasoftLabs\PayU\Test\IdeasoftLabs\PayU
+ * @package IdeaSoft\PayU\Test\IdeasoftLabs\PayU
  */
 class CreateTokenRequestTest extends \PHPUnit_Framework_TestCase
 {
@@ -108,7 +108,7 @@ class CreateTokenRequestTest extends \PHPUnit_Framework_TestCase
 
 
         // mocked request
-        $createTokenRequest = $this->getMockBuilder('\\IdeasoftLabs\\PayU\\Request\\CreateTokenRequest')->disableOriginalConstructor()->setMethods(['getData', 'createHash'])->getMock();
+        $createTokenRequest = $this->getMockBuilder('\\IdeaSoft\\PayU\\Request\\CreateTokenRequest')->disableOriginalConstructor()->setMethods(['getData', 'createHash'])->getMock();
         $createTokenRequest->expects($this->any())->method('getData')->willReturn($data);
         $createTokenRequest->expects($this->any())->method('createHash')->willReturn('HASH');
 

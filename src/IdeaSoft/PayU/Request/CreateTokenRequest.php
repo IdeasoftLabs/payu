@@ -1,13 +1,13 @@
 <?php
-namespace IdeasoftLabs\PayU\Request;
+namespace IdeaSoft\PayU\Request;
 
-use IdeasoftLabs\PayU\Parameter\CreateTokenParam;
-use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
-use IdeasoftLabs\PayU\Response\CreateTokenResponse;
+use IdeaSoft\PayU\Parameter\CreateTokenParam;
+use IdeaSoft\PayU\Parameter\Model\OrderItem;
+use IdeaSoft\PayU\Response\CreateTokenResponse;
 
 /**
  * Class CreateTokenRequest
- * @package IdeasoftLabs\PayU\Request
+ * @package IdeaSoft\PayU\Request
  */
 class CreateTokenRequest extends AbstractRequest
 {

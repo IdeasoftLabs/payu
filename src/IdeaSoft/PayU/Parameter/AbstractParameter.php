@@ -1,14 +1,14 @@
 <?php
-namespace IdeasoftLabs\PayU\Parameter;
+namespace IdeaSoft\PayU\Parameter;
 
-use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
-use IdeasoftLabs\PayU\Parameter\Model\CreditCard;
-use IdeasoftLabs\PayU\Parameter\Model\DeliveryAddress;
-use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
+use IdeaSoft\PayU\Parameter\Model\BillingAddress;
+use IdeaSoft\PayU\Parameter\Model\CreditCard;
+use IdeaSoft\PayU\Parameter\Model\DeliveryAddress;
+use IdeaSoft\PayU\Parameter\Model\OrderItem;
 
 /**
  * Class AbstractParameter
- * @package IdeasoftLabs\PayU\Parameter
+ * @package IdeaSoft\PayU\Parameter
  */
 abstract class AbstractParameter implements ParameterInterface
 {

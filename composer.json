@@ -1,6 +1,6 @@
 {
   "name": "ideasoft/payu",
-  "description": "PayU SDK for PHP.",
+  "description": "PayU Software Development Kit for PHP.",
   "keywords" : ["payu", "sdk"],
   "type": "library",
   "require": {
@@ -12,18 +12,18 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "IdeasoftLabs",
+      "name": "IdeaSoft",
       "email": "labs@ideasoft.com.tr"
     }
   ],
   "autoload": {
     "psr-0": {
-      "IdeasoftLabs\\PayU\\": "src/"
+      "IdeaSoft\\PayU\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-0": {
-      "IdeasoftLabs\\PayU\\Tests\\": "tests/"
+      "IdeaSoft\\PayU\\Tests\\": "tests/"
     }
   }
 }

@@ -1,9 +1,9 @@
 <?php
-namespace IdeasoftLabs\PayU\Parameter;
+namespace IdeaSoft\PayU\Parameter;
 
 /**
  * Class CreateToken
- * @package IdeasoftLabs\PayU\Parameter
+ * @package IdeaSoft\PayU\Parameter
  */
 class CreateTokenParam extends AbstractParameter
 {

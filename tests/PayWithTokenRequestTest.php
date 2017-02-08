@@ -1,11 +1,11 @@
 <?php
-namespace IdeasoftLabs\PayU\Test;
+namespace IdeaSoft\PayU\Test;
 
-use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
-use IdeasoftLabs\PayU\Parameter\Model\DeliveryAddress;
-use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
-use IdeasoftLabs\PayU\Parameter\PayWithTokenParam;
-use IdeasoftLabs\PayU\Request\PayWithTokenRequest;
+use IdeaSoft\PayU\Parameter\Model\BillingAddress;
+use IdeaSoft\PayU\Parameter\Model\DeliveryAddress;
+use IdeaSoft\PayU\Parameter\Model\OrderItem;
+use IdeaSoft\PayU\Parameter\PayWithTokenParam;
+use IdeaSoft\PayU\Request\PayWithTokenRequest;
 
 /**
  * Class PayWithTokenRequestTest
@@ -107,7 +107,7 @@ class PayWithTokenRequestTest extends \PHPUnit_Framework_TestCase
 
 
         // mocked request
-        $payWithTokenRequest = $this->getMockBuilder('\\IdeasoftLabs\\PayU\\Request\\PayWithTokenRequest')->disableOriginalConstructor()->setMethods(['getData', 'createHash'])->getMock();
+        $payWithTokenRequest = $this->getMockBuilder('\\IdeaSoft\\PayU\\Request\\PayWithTokenRequest')->disableOriginalConstructor()->setMethods(['getData', 'createHash'])->getMock();
         $payWithTokenRequest->expects($this->any())->method('getData')->willReturn($data);
         $payWithTokenRequest->expects($this->any())->method('createHash')->willReturn('HASH');
 

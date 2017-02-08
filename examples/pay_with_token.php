@@ -1,11 +1,11 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
-use IdeasoftLabs\PayU\Parameter\Model\DeliveryAddress;
-use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
-use IdeasoftLabs\PayU\Parameter\PayWithTokenParam;
-use IdeasoftLabs\PayU\Request\PayWithTokenRequest;
+use IdeaSoft\PayU\Parameter\Model\BillingAddress;
+use IdeaSoft\PayU\Parameter\Model\DeliveryAddress;
+use IdeaSoft\PayU\Parameter\Model\OrderItem;
+use IdeaSoft\PayU\Parameter\PayWithTokenParam;
+use IdeaSoft\PayU\Request\PayWithTokenRequest;
 
 $billingAddress = new BillingAddress();
 $billingAddress->setFirstName('Murat');
@@ -57,7 +57,7 @@ $param->setToken('dfde9824555ae65196e6557db9dd47b3');
 
 // request
 $request = new PayWithTokenRequest($param);
-/** @var \IdeasoftLabs\PayU\Response\PayWithTokenResponse $response */
+/** @var \IdeaSoft\PayU\Response\PayWithTokenResponse $response */
 $response = $request->send();
 echo "REF NO : ".$response->getRefNo();
 

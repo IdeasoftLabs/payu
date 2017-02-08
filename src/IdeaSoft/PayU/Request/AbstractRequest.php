@@ -1,12 +1,12 @@
 <?php
-namespace IdeasoftLabs\PayU\Request;
+namespace IdeaSoft\PayU\Request;
 
-use IdeasoftLabs\PayU\Parameter\ParameterInterface;
+use IdeaSoft\PayU\Parameter\ParameterInterface;
 use GuzzleHttp\Client;
 
 /**
  * Class AbstractRequest
- * @package IdeasoftLabs\PayU\Request
+ * @package IdeaSoft\PayU\Request
  */
 abstract class AbstractRequest
 {
