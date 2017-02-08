@@ -1,19 +1,11 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use IdeasoftLabs\PayU\Parameter\Model\CreditCard;
 use IdeasoftLabs\PayU\Parameter\Model\BillingAddress;
 use IdeasoftLabs\PayU\Parameter\Model\DeliveryAddress;
 use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
-use IdeasoftLabs\PayU\Parameter\CreateTokenParam;
-use IdeasoftLabs\PayU\Request\CreateTokenRequest;
-
-$creditCard = new CreditCard();
-$creditCard->setHolderName('Murat SAÇ');
-$creditCard->setNumber('4355084355084358');
-$creditCard->setExpiryMonth('12');
-$creditCard->setExpiryYear('2018');
-$creditCard->setCvv('000');
+use IdeasoftLabs\PayU\Parameter\PayWithTokenParam;
+use IdeasoftLabs\PayU\Request\PayWithTokenRequest;
 
 $billingAddress = new BillingAddress();
 $billingAddress->setFirstName('Murat');
@@ -49,22 +41,23 @@ $orderItem->setPrice('100');
 $orderItem->setVat('qw2');
 $orderItem->setQuantity('1');
 
-$param = new CreateTokenParam();
+$param = new PayWithTokenParam();
 $param->setPostUrl('https://secure.payu.com.tr/order/alu/v3');
 $param->setSecretKey('SECRET_KEY');
 $param->setMerchant('OPU_TEST');
 $param->setIpAddress('127.0.0.1');
-$param->setOrderRef(999990002);
+$param->setOrderRef(999990003);
 $param->setOrderDate(gmdate('Y-m-d H:i:s'));
 $param->setCurrency('TRY');
 $param->setInstallment('4');
-$param->setCreditCard($creditCard);
 $param->setBillingAddress($billingAddress);
 $param->setDeliveryAddress($deliveryAddress);
 $param->addOrderItem($orderItem);
+$param->setToken('dfde9824555ae65196e6557db9dd47b3');
 
 // request
-$request = new CreateTokenRequest($param);
-/** @var \IdeasoftLabs\PayU\Response\CreateTokenResponse $response */
+$request = new PayWithTokenRequest($param);
+/** @var \IdeasoftLabs\PayU\Response\PayWithTokenResponse $response */
 $response = $request->send();
-echo "TOKEN : ".$response->getTokenHash();
+echo "REF NO : ".$response->getRefNo();
+
