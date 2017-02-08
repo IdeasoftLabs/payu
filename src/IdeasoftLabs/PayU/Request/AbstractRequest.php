@@ -2,6 +2,7 @@
 namespace IdeasoftLabs\PayU\Request;
 
 use IdeasoftLabs\PayU\Parameter\ParameterInterface;
+use GuzzleHttp\Client;
 
 /**
  * Class AbstractRequest
@@ -20,7 +21,7 @@ abstract class AbstractRequest
      */
     public function __construct(ParameterInterface $data)
     {
-        $this->data =  $data;
+        $this->data = $data;
     }
 
     /**
@@ -37,5 +38,38 @@ abstract class AbstractRequest
     public function setData($data)
     {
         $this->data = $data;
+    }
+
+
+    /**
+     * Create hash
+     * @param $postData
+     * @return string
+     */
+    protected function createHash($postData)
+    {
+        $hash = null;
+        ksort($postData);
+        foreach ($postData as $key => $val) {
+            $hash .= strlen($val) . $val;
+        }
+
+        return hash_hmac("md5", $hash, $this->getData()->getSecretKey());
+    }
+
+    /**
+     * Send request
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+    public function send()
+    {
+        $postData = $this->prepareData();
+        $postData["ORDER_HASH"] = $this->createHash($postData);
+
+        // send
+        $client = new Client();
+        $response = $client->request('POST', $this->getData()->getPostUrl(), ['form_params' => $postData]);
+
+        return $response;
     }
 }

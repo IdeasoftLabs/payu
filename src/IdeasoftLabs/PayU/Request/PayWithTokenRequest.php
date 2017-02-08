@@ -1,7 +1,6 @@
 <?php
 namespace IdeasoftLabs\PayU\Request;
 
-use GuzzleHttp\Client;
 use IdeasoftLabs\PayU\Parameter\PayWithTokenParam;
 use IdeasoftLabs\PayU\Parameter\Model\OrderItem;
 use IdeasoftLabs\PayU\Response\PayWithTokenResponse;
@@ -77,28 +76,7 @@ class PayWithTokenRequest extends AbstractRequest
      */
     public function send()
     {
-        $postData = $this->prepareData();
-        $postData["ORDER_HASH"] = $this->createHash($postData);
-
-        // send
-        $client = new Client();
-        $response = $client->request('POST', $this->getData()->getPostUrl(), ['form_params' => $postData]);
+        $response = parent::send();
         return new PayWithTokenResponse(@simplexml_load_string($response->getBody()->getContents()));
-    }
-
-    /**
-     * Create hash
-     * @param $postData
-     * @return string
-     */
-    protected function createHash($postData)
-    {
-        $hash = null;
-        ksort($postData);
-        foreach ($postData as $key => $val) {
-            $hash .= strlen($val) . $val;
-        }
-
-        return hash_hmac("md5", $hash, $this->getData()->getSecretKey());
     }
 }
