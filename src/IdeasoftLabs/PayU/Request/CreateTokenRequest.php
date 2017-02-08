@@ -82,9 +82,7 @@ class CreateTokenRequest extends AbstractRequest
 
         // send
         $client = new Client();
-        $response = $client->request('POST', $this->getData()->getPostUrl(), [
-            ['form_params' => $postData]
-        ]);
+        $response = $client->request('POST', $this->getData()->getPostUrl(), ['form_params' => $postData]);
         return new CreateTokenResponse(@simplexml_load_string($response->getBody()->getContents()));
     }
 
