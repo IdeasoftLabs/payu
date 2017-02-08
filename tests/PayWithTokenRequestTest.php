@@ -21,8 +21,8 @@ class PayWithTokenRequestTest extends \PHPUnit_Framework_TestCase
         $param = $this->getParam();
 
         // request
-        $createTokenRequest = new PayWithTokenRequest($param);
-        $data = $createTokenRequest->prepareData();
+        $payWithTokenRequest = new PayWithTokenRequest($param);
+        $data = $payWithTokenRequest->prepareData();
         $this->assertEquals($data['PAY_METHOD'], 'CCVISAMC');
         $this->assertEquals($data['MERCHANT'], $param->getMerchant());
         $this->assertEquals($data['CC_NUMBER'], '');
