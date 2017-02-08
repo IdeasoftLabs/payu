@@ -72,11 +72,12 @@ class CreateTokenRequest extends AbstractRequest
 
     /**
      * Send request
+     * @param null $client
      * @return CreateTokenResponse
      */
-    public function send()
+    public function send($client = null)
     {
-        $response = parent::send();
+        $response = parent::send($client);
         return new CreateTokenResponse(@simplexml_load_string($response->getBody()->getContents()));
     }
 }

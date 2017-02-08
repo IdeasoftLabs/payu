@@ -59,15 +59,18 @@ abstract class AbstractRequest
 
     /**
      * Send request
+     * @param null $client
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function send()
+    public function send($client = null)
     {
         $postData = $this->prepareData();
         $postData["ORDER_HASH"] = $this->createHash($postData);
 
         // send
-        $client = new Client();
+        if ($client === null) {
+            $client = new Client();
+        }
         $response = $client->request('POST', $this->getData()->getPostUrl(), ['form_params' => $postData]);
 
         return $response;
