@@ -64,7 +64,7 @@ $param->setDeliveryAddress($deliveryAddress);
 $param->addOrderItem($orderItem);
 
 // request
-$request = new CreateTokenRequest($param);
+$request = new CreateTokenRequest(new \GuzzleHttp\Client());
 /** @var \IdeaSoft\PayU\Response\CreateTokenResponse $response */
-$response = $request->send();
+$response = $request->send($param);
 echo "TOKEN : ".$response->getTokenHash();

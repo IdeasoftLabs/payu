@@ -53,11 +53,11 @@ $param->setInstallment('4');
 $param->setBillingAddress($billingAddress);
 $param->setDeliveryAddress($deliveryAddress);
 $param->addOrderItem($orderItem);
-$param->setToken('dfde9824555ae65196e6557db9dd47b3');
+$param->setToken('70a9e09325ad1132c920603d510c5986');
 
 // request
-$request = new PayWithTokenRequest($param);
+$request = new PayWithTokenRequest(new \GuzzleHttp\Client());
 /** @var \IdeaSoft\PayU\Response\PayWithTokenResponse $response */
-$response = $request->send();
+$response = $request->send($param);
 echo "REF NO : ".$response->getRefNo();
 

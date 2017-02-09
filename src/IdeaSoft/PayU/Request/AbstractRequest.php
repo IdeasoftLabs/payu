@@ -1,7 +1,6 @@
 <?php
 namespace IdeaSoft\PayU\Request;
 
-use IdeaSoft\PayU\Parameter\ParameterInterface;
 use GuzzleHttp\Client;
 
 /**
@@ -11,42 +10,43 @@ use GuzzleHttp\Client;
 abstract class AbstractRequest
 {
     /**
-     * @var ParameterInterface
+     * Client
+     * @var Client
      */
-    private $data;
+    private $client;
 
     /**
      * AbstractRequest constructor.
-     * @param ParameterInterface $data
+     * @param Client $client
      */
-    public function __construct(ParameterInterface $data)
+    public function __construct(Client $client)
     {
-        $this->data = $data;
+        $this->setClient($client);
     }
 
     /**
-     * @return ParameterInterface
+     * @return Client
      */
-    public function getData()
+    public function getClient()
     {
-        return $this->data;
+        return $this->client;
     }
 
     /**
-     * @param ParameterInterface $data
+     * @param Client $client
      */
-    public function setData($data)
+    public function setClient(Client $client)
     {
-        $this->data = $data;
+        $this->client = $client;
     }
-
 
     /**
      * Create hash
      * @param $postData
+     * @param $secretKey
      * @return string
      */
-    protected function createHash($postData)
+    protected function createHash($postData, $secretKey)
     {
         $hash = null;
         ksort($postData);
@@ -54,25 +54,6 @@ abstract class AbstractRequest
             $hash .= strlen($val) . $val;
         }
 
-        return hash_hmac("md5", $hash, $this->getData()->getSecretKey());
-    }
-
-    /**
-     * Send request
-     * @param null $client
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     */
-    public function send($client = null)
-    {
-        $postData = $this->prepareData();
-        $postData["ORDER_HASH"] = $this->createHash($postData);
-
-        // send
-        if ($client === null) {
-            $client = new Client();
-        }
-        $response = $client->request('POST', $this->getData()->getPostUrl(), ['form_params' => $postData]);
-
-        return $response;
+        return hash_hmac("md5", $hash, $secretKey);
     }
 }

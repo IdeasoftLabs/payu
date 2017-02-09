@@ -13,13 +13,11 @@ class CreateTokenRequest extends AbstractRequest
 {
     /**
      * Prepare data
-     * @return array
+     * @param CreateTokenParam $data
+     * @return mixed
      */
-    public function prepareData()
+    public function prepareData(CreateTokenParam $data)
     {
-        /** @var CreateTokenParam $data */
-        $data = $this->getData();
-
         $params['PAY_METHOD'] = 'CCVISAMC';
         $params['MERCHANT'] = $data->getMerchant();
         $params['ORDER_REF'] = $data->getOrderRef();
@@ -72,12 +70,14 @@ class CreateTokenRequest extends AbstractRequest
 
     /**
      * Send request
-     * @param null $client
+     * @param CreateTokenParam $createTokenParam
      * @return CreateTokenResponse
      */
-    public function send($client = null)
+    public function send(CreateTokenParam $createTokenParam)
     {
-        $response = parent::send($client);
+        $postData = $this->prepareData($createTokenParam);
+        $postData["ORDER_HASH"] = $this->createHash($postData, $createTokenParam->getSecretKey());
+        $response = $this->getClient()->request('POST', $createTokenParam->getPostUrl(), ['form_params' => $postData]);
         return new CreateTokenResponse(@simplexml_load_string($response->getBody()->getContents()));
     }
 }

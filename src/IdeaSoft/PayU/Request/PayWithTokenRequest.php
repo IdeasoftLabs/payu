@@ -13,13 +13,11 @@ class PayWithTokenRequest extends AbstractRequest
 {
     /**
      * Prepare data
-     * @return array
+     * @param PayWithTokenParam $data
+     * @return mixed
      */
-    public function prepareData()
+    public function prepareData(PayWithTokenParam $data)
     {
-        /** @var PayWithTokenParam $data */
-        $data = $this->getData();
-
         $params['PAY_METHOD'] = 'CCVISAMC';
         $params['MERCHANT'] = $data->getMerchant();
         $params['ORDER_REF'] = $data->getOrderRef();
@@ -72,12 +70,14 @@ class PayWithTokenRequest extends AbstractRequest
 
     /**
      * Send request
-     * @param null $client
+     * @param PayWithTokenParam $payWithTokenParam
      * @return PayWithTokenResponse
      */
-    public function send($client = null)
+    public function send(PayWithTokenParam $payWithTokenParam)
     {
-        $response = parent::send($client);
+        $postData = $this->prepareData($payWithTokenParam);
+        $postData["ORDER_HASH"] = $this->createHash($postData, $payWithTokenParam->getSecretKey());
+        $response = $this->getClient()->request('POST', $payWithTokenParam->getPostUrl(), ['form_params' => $postData]);
         return new PayWithTokenResponse(@simplexml_load_string($response->getBody()->getContents()));
     }
 }
