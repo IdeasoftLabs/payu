@@ -1,6 +1,7 @@
 <?php
 namespace IdeaSoft\PayU\Test;
 
+use GuzzleHttp\Client;
 use IdeaSoft\PayU\Parameter\Model\BillingAddress;
 use IdeaSoft\PayU\Parameter\Model\DeliveryAddress;
 use IdeaSoft\PayU\Parameter\Model\OrderItem;
@@ -21,8 +22,8 @@ class PayWithTokenRequestTest extends \PHPUnit_Framework_TestCase
         $param = $this->getParam();
 
         // request
-        $payWithTokenRequest = new PayWithTokenRequest($param);
-        $data = $payWithTokenRequest->prepareData();
+        $payWithTokenRequest = new PayWithTokenRequest(new Client());
+        $data = $payWithTokenRequest->prepareData($param);
         $this->assertEquals($data['PAY_METHOD'], 'CCVISAMC');
         $this->assertEquals($data['MERCHANT'], $param->getMerchant());
         $this->assertEquals($data['CC_NUMBER'], '');
@@ -107,12 +108,12 @@ class PayWithTokenRequestTest extends \PHPUnit_Framework_TestCase
 
 
         // mocked request
-        $payWithTokenRequest = $this->getMockBuilder('\\IdeaSoft\\PayU\\Request\\PayWithTokenRequest')->disableOriginalConstructor()->setMethods(['getData', 'createHash'])->getMock();
+        $payWithTokenRequest = $this->getMockBuilder('\\IdeaSoft\\PayU\\Request\\PayWithTokenRequest')->setConstructorArgs([$client])->setMethods(['getData', 'createHash'])->getMock();
         $payWithTokenRequest->expects($this->any())->method('getData')->willReturn($data);
         $payWithTokenRequest->expects($this->any())->method('createHash')->willReturn('HASH');
 
         // send
-        $payWithTokenResponse = $payWithTokenRequest->send($client);
+        $payWithTokenResponse = $payWithTokenRequest->send($data);
         $this->assertEquals($payWithTokenResponse->isSuccessful(), true);
         $this->assertEquals($payWithTokenResponse->getRefNo(), '123');
         $this->assertEquals($payWithTokenResponse->getErrorCode(), '00');
