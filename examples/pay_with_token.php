@@ -32,6 +32,7 @@ $deliveryAddress->setPhone('1234567890');
 $deliveryAddress->setCountryCode('TR');
 $deliveryAddress->setState('State / Dept.');
 $deliveryAddress->setFax('1234567890');
+$deliveryAddress->setCompany('IdeaSoft');
 
 $orderItem = new OrderItem();
 $orderItem->setName('Ticket1');

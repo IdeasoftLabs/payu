@@ -47,6 +47,7 @@ class PayWithTokenRequest extends AbstractRequest
         $params['DELIVERY_CITY'] = $parameter->getDeliveryAddress()->getCity();
         $params['DELIVERY_STATE'] = $parameter->getDeliveryAddress()->getState();
         $params['DELIVERY_COUNTRYCODE'] = $parameter->getDeliveryAddress()->getCountryCode();
+        $params['DELIVERY_COMPANY'] = $parameter->getDeliveryAddress()->getCompany();
         $params['CC_TOKEN'] = $parameter->getToken();
         $params['PAY_METHOD'] = 'CCVISAMC';
         $params['CC_NUMBER'] = "";
