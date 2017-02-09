@@ -3,6 +3,7 @@ namespace IdeaSoft\PayU\Request;
 
 use IdeaSoft\PayU\Parameter\CreateTokenParam;
 use IdeaSoft\PayU\Parameter\Model\OrderItem;
+use IdeaSoft\PayU\Parameter\ParameterInterface;
 use IdeaSoft\PayU\Response\CreateTokenResponse;
 
 /**
@@ -13,49 +14,50 @@ class CreateTokenRequest extends AbstractRequest
 {
     /**
      * Prepare data
-     * @param CreateTokenParam $data
+     * @param ParameterInterface $parameter
      * @return mixed
      */
-    public function prepareData(CreateTokenParam $data)
+    public function prepareData(ParameterInterface $parameter)
     {
-        $params['PAY_METHOD'] = 'CCVISAMC';
-        $params['MERCHANT'] = $data->getMerchant();
-        $params['ORDER_REF'] = $data->getOrderRef();
-        $params['ORDER_DATE'] = $data->getOrderDate();
-        $params['PRICES_CURRENCY'] = $data->getCurrency();
-        $params['SELECTED_INSTALLMENTS_NUMBER'] = $data->getInstallment();
-        $params['CLIENT_IP'] = $data->getIpAddress();
-        $params['BILL_LNAME'] = $data->getBillingAddress()->getLastName();
-        $params['BILL_FNAME'] = $data->getBillingAddress()->getFirstName();
-        $params['BILL_EMAIL'] = $data->getBillingAddress()->getEmail();
-        $params['BILL_PHONE'] = $data->getBillingAddress()->getPhone();
-        $params['BILL_COUNTRYCODE'] = $data->getBillingAddress()->getCountryCode();
-        $params['BILL_ZIPCODE'] = $data->getBillingAddress()->getZipCode();
-        $params['BILL_ADDRESS'] = $data->getBillingAddress()->getAddress();
-        $params['BILL_ADDRESS2'] = $data->getBillingAddress()->getAddress2();
-        $params['BILL_CITY'] = $data->getBillingAddress()->getCity();
-        $params['BILL_STATE'] = $data->getBillingAddress()->getState();
-        $params['BILL_FAX'] = $data->getBillingAddress()->getFax();
-        $params['DELIVERY_LNAME'] = $data->getDeliveryAddress()->getLastName();
-        $params['DELIVERY_FNAME'] = $data->getDeliveryAddress()->getFirstName();
-        $params['DELIVERY_EMAIL'] = $data->getDeliveryAddress()->getEmail();
-        $params['DELIVERY_PHONE'] = $data->getDeliveryAddress()->getPhone();
-        $params['DELIVERY_ADDRESS'] = $data->getDeliveryAddress()->getAddress();
-        $params['DELIVERY_ADDRESS2'] = $data->getDeliveryAddress()->getAddress2();
-        $params['DELIVERY_ZIPCODE'] = $data->getDeliveryAddress()->getZipCode();
-        $params['DELIVERY_CITY'] = $data->getDeliveryAddress()->getCity();
-        $params['DELIVERY_STATE'] = $data->getDeliveryAddress()->getState();
-        $params['DELIVERY_COUNTRYCODE'] = $data->getDeliveryAddress()->getCountryCode();
-        $params['CC_NUMBER'] = $data->getCreditCard()->getNumber();
-        $params['EXP_MONTH'] = $data->getCreditCard()->getExpiryMonth();
-        $params['EXP_YEAR'] = $data->getCreditCard()->getExpiryYear();
-        $params['CC_CVV'] = $data->getCreditCard()->getCvv();
-        $params['CC_OWNER'] = $data->getCreditCard()->getHolderName();
+        /** @var CreateTokenParam $parameter */
+        $params['MERCHANT'] = $parameter->getMerchant();
+        $params['ORDER_REF'] = $parameter->getOrderRef();
+        $params['ORDER_DATE'] = $parameter->getOrderDate();
+        $params['PRICES_CURRENCY'] = $parameter->getCurrency();
+        $params['SELECTED_INSTALLMENTS_NUMBER'] = $parameter->getInstallment();
+        $params['CLIENT_IP'] = $parameter->getIpAddress();
+        $params['BILL_LNAME'] = $parameter->getBillingAddress()->getLastName();
+        $params['BILL_FNAME'] = $parameter->getBillingAddress()->getFirstName();
+        $params['BILL_EMAIL'] = $parameter->getBillingAddress()->getEmail();
+        $params['BILL_PHONE'] = $parameter->getBillingAddress()->getPhone();
+        $params['BILL_COUNTRYCODE'] = $parameter->getBillingAddress()->getCountryCode();
+        $params['BILL_ZIPCODE'] = $parameter->getBillingAddress()->getZipCode();
+        $params['BILL_ADDRESS'] = $parameter->getBillingAddress()->getAddress();
+        $params['BILL_ADDRESS2'] = $parameter->getBillingAddress()->getAddress2();
+        $params['BILL_CITY'] = $parameter->getBillingAddress()->getCity();
+        $params['BILL_STATE'] = $parameter->getBillingAddress()->getState();
+        $params['BILL_FAX'] = $parameter->getBillingAddress()->getFax();
+        $params['DELIVERY_LNAME'] = $parameter->getDeliveryAddress()->getLastName();
+        $params['DELIVERY_FNAME'] = $parameter->getDeliveryAddress()->getFirstName();
+        $params['DELIVERY_EMAIL'] = $parameter->getDeliveryAddress()->getEmail();
+        $params['DELIVERY_PHONE'] = $parameter->getDeliveryAddress()->getPhone();
+        $params['DELIVERY_ADDRESS'] = $parameter->getDeliveryAddress()->getAddress();
+        $params['DELIVERY_ADDRESS2'] = $parameter->getDeliveryAddress()->getAddress2();
+        $params['DELIVERY_ZIPCODE'] = $parameter->getDeliveryAddress()->getZipCode();
+        $params['DELIVERY_CITY'] = $parameter->getDeliveryAddress()->getCity();
+        $params['DELIVERY_STATE'] = $parameter->getDeliveryAddress()->getState();
+        $params['DELIVERY_COUNTRYCODE'] = $parameter->getDeliveryAddress()->getCountryCode();
+        $params['CC_NUMBER'] = $parameter->getCreditCard()->getNumber();
+        $params['EXP_MONTH'] = $parameter->getCreditCard()->getExpiryMonth();
+        $params['EXP_YEAR'] = $parameter->getCreditCard()->getExpiryYear();
+        $params['CC_CVV'] = $parameter->getCreditCard()->getCvv();
+        $params['CC_OWNER'] = $parameter->getCreditCard()->getHolderName();
         $params['LU_ENABLE_TOKEN'] = 1;
+        $params['PAY_METHOD'] = 'CCVISAMC';
 
         $i = 0;
         /** @var OrderItem $orderItem */
-        foreach ($data->getOrderItems() as $orderItem) {
+        foreach ($parameter->getOrderItems() as $orderItem) {
             $params['ORDER_PNAME[' . $i . ']'] = $orderItem->getName();
             $params['ORDER_PCODE[' . $i . ']'] = $orderItem->getCode();
             $params['ORDER_PINFO[' . $i . ']'] = $orderItem->getInfo();
@@ -70,14 +72,15 @@ class CreateTokenRequest extends AbstractRequest
 
     /**
      * Send request
-     * @param CreateTokenParam $createTokenParam
+     * @param ParameterInterface $parameter
      * @return CreateTokenResponse
      */
-    public function send(CreateTokenParam $createTokenParam)
+    public function send(ParameterInterface $parameter)
     {
-        $postData = $this->prepareData($createTokenParam);
-        $postData["ORDER_HASH"] = $this->createHash($postData, $createTokenParam->getSecretKey());
-        $response = $this->getClient()->request('POST', $createTokenParam->getPostUrl(), ['form_params' => $postData]);
+        /** @var CreateTokenParam $parameter */
+        $postData = $this->prepareData($parameter);
+        $postData["ORDER_HASH"] = $this->createHash($postData, $parameter->getSecretKey());
+        $response = $this->getClient()->request('POST', $parameter->getPostUrl(), ['form_params' => $postData]);
         return new CreateTokenResponse(@simplexml_load_string($response->getBody()->getContents()));
     }
 }

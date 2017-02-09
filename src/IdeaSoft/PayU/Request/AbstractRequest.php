@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
  * Class AbstractRequest
  * @package IdeaSoft\PayU\Request
  */
-abstract class AbstractRequest
+abstract class AbstractRequest implements RequestInterface
 {
     /**
      * Client
