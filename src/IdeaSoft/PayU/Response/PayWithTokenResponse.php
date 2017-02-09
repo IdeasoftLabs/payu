@@ -13,7 +13,7 @@ class PayWithTokenResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        if(strval($this->getResponse()->STATUS) == 'SUCCESS'){
+        if(strval($this->getData()->STATUS) == 'SUCCESS'){
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ class PayWithTokenResponse extends AbstractResponse
      */
     public function getErrorCode()
     {
-        return strval($this->getResponse()->PROCRETURNCODE);
+        return strval($this->getData()->PROCRETURNCODE);
     }
 
     /**
@@ -34,7 +34,7 @@ class PayWithTokenResponse extends AbstractResponse
      */
     public function getErrorMessage()
     {
-        return strval($this->getResponse()->ERRORMESSAGE);
+        return strval($this->getData()->ERRORMESSAGE);
     }
 
     /**
@@ -43,6 +43,6 @@ class PayWithTokenResponse extends AbstractResponse
      */
     public function getRefNo()
     {
-        return strval($this->getResponse()->REFNO);
+        return strval($this->getData()->REFNO);
     }
 }

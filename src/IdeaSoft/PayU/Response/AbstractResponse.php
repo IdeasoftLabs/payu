@@ -10,30 +10,30 @@ abstract class AbstractResponse
     /**
      * @var mixed
      */
-    protected $response;
+    protected $data;
 
     /**
      * AbstractResponse constructor.
-     * @param $response
+     * @param $data
      */
-    public function __construct($response)
+    public function __construct($data)
     {
-        $this->setResponse($response);
+        $this->setData($data);
     }
 
     /**
      * @return mixed
      */
-    public function getResponse()
+    public function getData()
     {
-        return $this->response;
+        return $this->data;
     }
 
     /**
-     * @param mixed $response
+     * @param mixed $data
      */
-    public function setResponse($response)
+    public function setData($data)
     {
-        $this->response = $response;
+        $this->data = $data;
     }
 }
